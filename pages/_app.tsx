@@ -3,11 +3,20 @@ import type { AppProps } from "next/app";
 
 import { light } from "../styles/theme";
 import { ThemeProvider } from "styled-components";
+import GlobalStyles from "../styles/globalStyles";
+import { Header } from "../components/Header";
+import { Footer } from "../components/Footer";
+import { Content } from "../components/Content";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={light}>
-      <Component {...pageProps} />
+      <Header />
+      <Content>
+        <Component {...pageProps} />
+      </Content>
+      <Footer />
+      <GlobalStyles />
     </ThemeProvider>
   );
 }
