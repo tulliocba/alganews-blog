@@ -2,13 +2,15 @@ import styled from "styled-components";
 import { transparentize } from "polished";
 import { HEADER_HEIGHT } from "../_constants";
 import { Logo } from "./Logo";
+import React from "react";
+import { NavBar } from "./NavBar";
 
 export const Header = () => {
   return (
     <Wrapper>
       <Container>
         <Logo />
-        <span>navbar</span>
+        <NavBar />
       </Container>
     </Wrapper>
   );
