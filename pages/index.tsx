@@ -1,7 +1,9 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import type { NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import React from "react";
+import { FeaturedPost } from "../components/FeaturedPost";
+import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
   return (
@@ -17,8 +19,49 @@ const Home: NextPage = () => {
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
+        <FeaturedPost
+          postSummary={{
+            id: 42,
+            slug: "como-fazer-x-coisas-com-react-js",
+            title: "Como fazer X coisas com React.js",
+            imageUrls: {
+              default:
+                "https://storage.googleapis.com/alganews-files/posts/avatar-joao.jpeg",
+              small:
+                "https://storage.googleapis.com/alganews-files/posts/avatar-joao-small.jpeg",
+              medium:
+                "https://storage.googleapis.com/alganews-files/posts/avatar-joao-medium.jpeg",
+              large:
+                "https://storage.googleapis.com/alganews-files/posts/avatar-joao-large.jpeg",
+            },
+            editor: {
+              id: 29,
+              name: "Daniel Bonifacio",
+              avatarUrls: {
+                default:
+                  "https://storage.googleapis.com/alganews-files/posts/avatar-joao.jpeg",
+                small:
+                  "https://storage.googleapis.com/alganews-files/posts/avatar-joao-small.jpeg",
+                medium:
+                  "https://storage.googleapis.com/alganews-files/posts/avatar-joao-medium.jpeg",
+                large:
+                  "https://storage.googleapis.com/alganews-files/posts/avatar-joao-large.jpeg",
+              },
+              createdAt: "2017-03-04T00:12:45Z",
+            },
+            createdAt: "2020-12-01T18:09:02Z",
+            updatedAt: "2021-10-06T09:32:45.520Z",
+            published: true,
+            tags: ["JavaScript", "react", "backend"],
+            canBePublished: true,
+            canBeUnpublished: true,
+            canBeDeleted: true,
+            canBeEdited: true,
+          }}
+        />
+
         <p className={styles.description}>
-          Get started by editing{' '}
+          Get started by editing{" "}
           <code className={styles.code}>pages/index.js</code>
         </p>
 
@@ -53,7 +96,7 @@ const Home: NextPage = () => {
         </div>
       </main>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
