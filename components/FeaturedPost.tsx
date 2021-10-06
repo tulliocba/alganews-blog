@@ -72,11 +72,11 @@ const Content = styled.div`
 
 const Tags = styled.ul`
   list-style: none;
-  display: flex;
+  display: none;
   gap: 8px;
 
-  @media screen and (max-width: 767px) {
-    display: none;
+  @media screen and (min-width: 768px) {
+    display: flex;
   }
 `;
 
