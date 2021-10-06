@@ -24,8 +24,11 @@ const Home = ({ posts }: HomeProps) => {
 
 export default Home;
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const posts = await PostService.getAllPosts({ page: 0 });
+export const getServerSideProps: GetServerSideProps<HomeProps> = async (
+  context
+) => {
+  const { page } = context.query;
+  const posts = await PostService.getAllPosts({ page: Number(page) - 1 });
   return {
     props: { posts },
   };
