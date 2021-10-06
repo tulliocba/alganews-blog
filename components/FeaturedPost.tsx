@@ -1,41 +1,48 @@
 import { Post } from "cms-alganews-sdk";
 import styled from "styled-components";
 import { Avatar } from "./Avatar";
+import Link from "next/link";
+import { transparentize } from "polished";
 
 interface FeaturedPostProps {
   postSummary: Post.Summary;
 }
 
 export const FeaturedPost = ({ postSummary }: FeaturedPostProps) => {
+  const { id, slug } = postSummary;
+
   return (
-    <Wrapper>
-      <BgImage bg={postSummary.imageUrls.default} />
-      <Content>
-        <Tags>
-          {postSummary.tags.map((tag) => (
-            <Tag key={tag}>{tag}</Tag>
-          ))}
-        </Tags>
-        <Editor>
-          <Avatar src={postSummary.editor.avatarUrls.small} />
-          <EditorDescription>
-            <EditorName>{postSummary.editor.name}</EditorName>
-            <PostDate>há 3 dias</PostDate>
-          </EditorDescription>
-        </Editor>
-        <Title>{postSummary.title}</Title>
-      </Content>
-    </Wrapper>
+    <Link href={`/posts/${id}/${slug}`} passHref>
+      <Wrapper>
+        <BgImage bg={postSummary.imageUrls.default} />
+        <Content>
+          <Tags>
+            {postSummary.tags.map((tag) => (
+              <Tag key={tag}>{tag}</Tag>
+            ))}
+          </Tags>
+          <Editor>
+            <Avatar src={postSummary.editor.avatarUrls.small} />
+            <EditorDescription>
+              <EditorName>{postSummary.editor.name}</EditorName>
+              <PostDate>há 3 dias</PostDate>
+            </EditorDescription>
+          </Editor>
+          <Title>{postSummary.title}</Title>
+        </Content>
+      </Wrapper>
+    </Link>
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.a`
   background-color: ${(p) => p.theme.primaryBackground};
   color: ${(p) => p.theme.primaryForeground};
   border-radius: ${(p) => p.theme.borderRadius};
 
   padding: 32px;
   width: 100%;
+  text-decoration: none;
 
   min-height: 256px;
   position: relative;
@@ -43,6 +50,15 @@ const Wrapper = styled.div`
   align-items: center;
 
   overflow: hidden;
+
+  transition: box-shadow 0.25s ease;
+
+  &:hover,
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px
+      ${(p) => transparentize(0.7, p.theme.primaryBackground)};
+  }
 `;
 
 const Content = styled.div`
