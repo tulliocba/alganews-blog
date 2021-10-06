@@ -3,9 +3,12 @@ import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import React from "react";
 import { FeaturedPost } from "../components/FeaturedPost";
+import { ServerResponse } from "http";
+import { PostCard } from "../components/PostCard";
+import { PostsGrid } from "../components/PostsGrid";
 
 interface HomeProps {
-  posts: Post.Paginated;
+  posts?: Post.Paginated;
 }
 
 const Home = ({ posts }: HomeProps) => {
@@ -17,18 +20,44 @@ const Home = ({ posts }: HomeProps) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {posts.content && <FeaturedPost postSummary={posts.content[0]} />}
+      {posts?.content && <FeaturedPost postSummary={posts.content[0]} />}
+
+      <PostsGrid>
+        {posts?.content?.slice(1).map((post) => (
+          <PostCard key={post.id} post={post} />
+        ))}
+      </PostsGrid>
     </div>
   );
 };
 
 export default Home;
 
+const sendToHome = (res: ServerResponse) => {
+  res.statusCode = 302;
+  res.setHeader("Location", "/?page=1");
+
+  return {
+    props: {},
+  };
+};
+
 export const getServerSideProps: GetServerSideProps<HomeProps> = async (
   context
 ) => {
-  const { page } = context.query;
-  const posts = await PostService.getAllPosts({ page: Number(page) - 1 });
+  const { page: _page } = context.query;
+
+  const page = Number(_page);
+
+  if (isNaN(page) || page < 1) {
+    return sendToHome(context.res);
+  }
+
+  const posts = await PostService.getAllPosts({ page: page - 1 });
+
+  if (!posts.content?.length) {
+    return sendToHome(context.res);
+  }
   return {
     props: { posts },
   };
