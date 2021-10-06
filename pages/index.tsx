@@ -26,13 +26,13 @@ const Home: NextPage = () => {
             title: "Como fazer X coisas com React.js",
             imageUrls: {
               default:
-                "https://storage.googleapis.com/alganews-files/posts/avatar-joao.jpeg",
+                "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8ZGVza3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80",
               small:
-                "https://storage.googleapis.com/alganews-files/posts/avatar-joao-small.jpeg",
+                "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8ZGVza3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80",
               medium:
-                "https://storage.googleapis.com/alganews-files/posts/avatar-joao-medium.jpeg",
+                "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8ZGVza3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80",
               large:
-                "https://storage.googleapis.com/alganews-files/posts/avatar-joao-large.jpeg",
+                "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8ZGVza3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80",
             },
             editor: {
               id: 29,

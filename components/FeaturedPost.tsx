@@ -9,21 +9,22 @@ interface FeaturedPostProps {
 export const FeaturedPost = ({ postSummary }: FeaturedPostProps) => {
   return (
     <Wrapper>
-      <Tags>
-        {postSummary.tags.map((tag) => (
-          <Tag key={tag}>{tag}</Tag>
-        ))}
-      </Tags>
-      <Editor>
-        <Avatar
-            src={postSummary.editor.avatarUrls.small} 
-        />
-        <EditorDescription>
-          <EditorName>{postSummary.editor.name}</EditorName>
-          <PostDate>há 3 dias</PostDate>
-        </EditorDescription>
-      </Editor>
-      <Title>{postSummary.title}</Title>
+      <BgImage bg={postSummary.imageUrls.default} />
+      <Content>
+        <Tags>
+          {postSummary.tags.map((tag) => (
+            <Tag key={tag}>{tag}</Tag>
+          ))}
+        </Tags>
+        <Editor>
+          <Avatar src={postSummary.editor.avatarUrls.small} />
+          <EditorDescription>
+            <EditorName>{postSummary.editor.name}</EditorName>
+            <PostDate>há 3 dias</PostDate>
+          </EditorDescription>
+        </Editor>
+        <Title>{postSummary.title}</Title>
+      </Content>
     </Wrapper>
   );
 };
@@ -32,17 +33,25 @@ const Wrapper = styled.div`
   background-color: ${(p) => p.theme.primaryBackground};
   color: ${(p) => p.theme.primaryForeground};
   border-radius: ${(p) => p.theme.borderRadius};
-  gap: 24px;
 
   padding: 32px;
-  display: flex;
-  flex-direction: column;
-
-  justify-content: center;
-
   width: 100%;
 
   min-height: 256px;
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  overflow: hidden;
+`;
+
+const Content = styled.div`
+  position: relative;
+  z-index: 1;
+  gap: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 const Tags = styled.ul`
@@ -56,8 +65,9 @@ const Tag = styled.li`
   color: ${(p) => p.theme.activeElementForeground};
   border-radius: ${(p) => p.theme.borderRadius};
   text-transform: lowercase;
-  padding: 4px 12px;
+  padding: 4px 8px 6px;
   cursor: default;
+  font-size: 12px;
 `;
 
 const Editor = styled.div`
@@ -83,4 +93,13 @@ const EditorName = styled.p`
 const Title = styled.h2`
   font-size: 24px;
   font-weight: 700;
+`;
+
+const BgImage = styled.div<{ bg: string }>`
+  position: absolute;
+  inset: 0;
+  background-color: blue;
+  z-index: 0;
+  background-image: url(${(p) => p.bg});
+  opacity: 0.1;
 `;
