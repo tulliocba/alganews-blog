@@ -32,6 +32,7 @@ const Home = ({ posts }: HomeProps) => {
       </PostsGrid>
 
       <ReactPaginate
+        containerClassName='Pagination'
         pageCount={posts?.totalPages || 0}
         marginPagesDisplayed={0}
         pageRangeDisplayed={3}
