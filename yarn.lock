@@ -853,10 +853,10 @@ classnames@2.2.6:
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
   integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
 
-cms-alganews-sdk@2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/cms-alganews-sdk/-/cms-alganews-sdk-2.3.0.tgz#519746353471e6bf49b04db422bd2da433766945"
-  integrity sha512-HkHsIzNz85F5AOnWY/dBDFGiK/OVh9/uoerWYIalUPZE5IME2kAA8Y6T/FqLdi8EnAcSW7lBB5GppSH+4ZqGHg==
+cms-alganews-sdk@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/cms-alganews-sdk/-/cms-alganews-sdk-2.4.0.tgz#00dc9375e1b363b1c0f8ff38c74b941117070541"
+  integrity sha512-sAAlA2TqYiC94WHdSvvA5lFmAZCSX9WShM9PO5P1qoV6Tyzar43Aa5yAHkYVsFCc/eSNSuZ4QC0DSYrvGg542w==
   dependencies:
     axios "^0.21.4"
     date-fns "^2.24.0"

@@ -1,5 +1,6 @@
 import "../styles/globals.css";
-import type { AppProps } from "next/app";
+import type { AppProps as NexAppProps } from "next/app";
+import Error from "next/error";
 
 import { light } from "../styles/theme";
 import { ThemeProvider } from "styled-components";
@@ -8,12 +9,25 @@ import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { Content } from "../components/Content";
 
-function MyApp({ Component, pageProps }: AppProps) {
+interface CustomAppProps extends NextPageProps {}
+
+type AppProps<T = any> = {
+  pageProps: T;
+} & Omit<NexAppProps<T>, "pageProps">;
+
+function MyApp({ Component, pageProps }: AppProps<CustomAppProps>) {
   return (
     <ThemeProvider theme={light}>
       <Header />
       <Content>
-        <Component {...pageProps} />
+        {pageProps.error ? (
+          <Error
+            statusCode={pageProps.error.statusCode}
+            title={pageProps.error.message}
+          />
+        ) : (
+          <Component {...pageProps} />
+        )}
       </Content>
       <Footer />
       <GlobalStyles />
