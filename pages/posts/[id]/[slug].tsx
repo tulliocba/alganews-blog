@@ -1,33 +1,57 @@
 import { Post, PostService, ResourceNotFoundError } from "cms-alganews-sdk";
 import { GetServerSideProps } from "next";
+import Head from "next/head";
 import { ParsedUrlQuery } from "querystring";
+import { PostHeader } from "../../../components/PostHeader";
 
-const PostPage = ({ post }: PostPageProps) => {
+const PostPage = ({ post, host }: PostPageProps) => {
   //   const router = useRouter();
   //   const {query} = router;
-  return <div>{post?.title}</div>;
+  return (
+    <>
+      <Head>
+        <link
+          rel="canonical"
+          href={`http://${host}/posts/${post?.id}/${post?.slug}`}
+        />
+      </Head>
+      {post && (
+        <>
+          <PostHeader
+            thumbnail={post?.imageUrls.large}
+            createdAt={post?.createdAt}
+            editor={post?.editor}
+            title={post?.title}
+          />
+        </>
+      )}
+    </>
+  );
 };
 
 interface Params extends ParsedUrlQuery {
-  pid: string[];
+  id: string;
+  slug: string;
 }
 
 interface PostPageProps extends NextPageProps {
   post?: Post.Detailed;
+  host?: string;
 }
 
 export const getServerSideProps: GetServerSideProps<PostPageProps, Params> =
-  async ({ params }) => {
+  async ({ params, req }) => {
     try {
-      const [id, slug] = params?.pid || [];
+      if (!params || isNaN(Number(params.id))) return { notFound: true };
 
-      if (isNaN(Number(id))) return { notFound: true };
+      const { id } = params;
 
       const post = await PostService.getExistingPost(Number(id));
 
       return {
         props: {
           post,
+          host: req.headers.host,
         },
       };
     } catch (error) {
