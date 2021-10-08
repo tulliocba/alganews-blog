@@ -2,6 +2,7 @@ import { Post, PostService, ResourceNotFoundError } from "cms-alganews-sdk";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
 import { ParsedUrlQuery } from "querystring";
+import { Markdown } from "../../../components/Markdown";
 import { PostHeader } from "../../../components/PostHeader";
 
 const PostPage = ({ post, host }: PostPageProps) => {
@@ -25,6 +26,8 @@ const PostPage = ({ post, host }: PostPageProps) => {
           />
         </>
       )}
+
+      <Markdown markdown={post?.body || ''}/>
     </>
   );
 };
