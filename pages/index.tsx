@@ -63,7 +63,7 @@ export const getServerSideProps: GetServerSideProps<HomeProps> = async (
 ) => {
   const { page: _page } = context.query;
 
-  const page = Number(_page);
+  const page = _page ? Number(_page) : 1;
 
   if (isNaN(page) || page < 1) {
     return sendToHome(context.res);

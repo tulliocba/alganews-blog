@@ -23,32 +23,32 @@ export const PostHeader = (props: PostHeaderProps) => {
           objectFit={"cover"}
           alt={title}
         />
+        <Editor>
+          <Image
+            src={editor.avatarUrls.small}
+            width={64}
+            height={64}
+            objectFit={"cover"}
+            alt={editor.name}
+          />
+        </Editor>
+        <PublishDate>{formatPostDate(createdAt)}</PublishDate>
+        <Title>{title}</Title>
       </Thumbnail>
-      <Editor>
-        <Image
-          src={editor.avatarUrls.small}
-          width={64}
-          height={64}
-          objectFit={"cover"}
-          alt={editor.name}
-        />
-      </Editor>
-      <PublishDate>{formatPostDate(createdAt)}</PublishDate>
-      <Title>{title}</Title>
     </Wrapper>
   );
-}
+};
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
   text-align: center;
 `;
 
 const Thumbnail = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   height: 256px;
+  gap: 16px;
   width: 100%;
   border-top-left-radius: ${(p) => p.theme.borderRadius};
   border-top-right-radius: ${(p) => p.theme.borderRadius};

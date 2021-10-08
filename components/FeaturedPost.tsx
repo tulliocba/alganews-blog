@@ -76,7 +76,7 @@ const Tags = styled.ul`
   display: none;
   gap: 8px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 767px) {
     display: flex;
   }
 `;
