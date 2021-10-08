@@ -123,6 +123,19 @@ export default createGlobalStyle`
       }
     }
 
+    pre > code {
+      white-space: inherit!important;
+      display: inline-block;
+    }
+
+    pre {
+      color: ${(p) => p.theme.pageBackground};
+      background-color: ${(p) => p.theme.pageForeground};
+      border-radius: ${(p) => p.theme.borderRadius};
+      padding: 4px 8px;
+      overflow-x: auto;
+    }
+
     code:not([class^='language']) {
       color: ${(p) => p.theme.pageBackground};
       background-color: ${(p) => p.theme.pageForeground};
