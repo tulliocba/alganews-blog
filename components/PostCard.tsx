@@ -3,6 +3,7 @@ import { transparentize } from "polished";
 import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
+import { formatPostDate } from "../core/utils/formatPostDate";
 
 interface PostCardProps {
   post: Post.Summary;
@@ -23,7 +24,7 @@ export const PostCard = ({ post }: PostCardProps) => {
               height={64}
             />
           </Editor>
-          <PublishDate>hé 3 horas</PublishDate>
+          <PublishDate>{formatPostDate(post.createdAt)}</PublishDate>
           <Title>{post.title}</Title>
         </Info>
       </Wrapper>

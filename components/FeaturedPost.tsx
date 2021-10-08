@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Avatar } from "./Avatar";
 import Link from "next/link";
 import { transparentize } from "polished";
+import { formatPostDate } from "../core/utils/formatPostDate";
 
 interface FeaturedPostProps {
   postSummary: Post.Summary;
@@ -25,7 +26,7 @@ export const FeaturedPost = ({ postSummary }: FeaturedPostProps) => {
             <Avatar src={postSummary.editor.avatarUrls.small} />
             <EditorDescription>
               <EditorName>{postSummary.editor.name}</EditorName>
-              <PostDate>há 3 dias</PostDate>
+              <PostDate>{formatPostDate(postSummary.createdAt)}</PostDate>
             </EditorDescription>
           </Editor>
           <Title>{postSummary.title}</Title>
